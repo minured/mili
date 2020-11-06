@@ -1,0 +1,12 @@
+div.left-sider div.left-title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+div.left-sider div.left-title-wrapper img {
+  width: 50px;
+}
+div.left-sider div.left-title-wrapper span {
+  font-size: 20px;
+}

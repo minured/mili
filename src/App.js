@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "../node_modules/antd/dist/antd.less";
+import "./assets/style/reset.less";
+import Login from "./pages/login/Login";
+import Admin from "./pages/admin/Admin";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import About from "./pages/about/About";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // 路由
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={Admin} />
+        <Route path="/login" component={Login} />
+        <Route path="/about" component={About} />
+        {/* <Redirect to="/" /> */}
+      </Switch>
+    </BrowserRouter>
   );
 }
 
