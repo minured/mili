@@ -15,7 +15,7 @@ import Product from "../../pages/product/Product";
 import BarChart from "../../pages/charts/BarChart";
 import LineChart from "../../pages/charts/LineChart";
 import PieChart from "../../pages/charts/PieChart";
-// import  from "../../pages";
+import Order from "../../pages/order/Order";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -74,6 +74,7 @@ export default function Admin(props) {
                 <Route path="/product" component={Product} />
                 <Route path="/piechart" component={PieChart} />
                 <Route path="/role" component={Role} />
+                <Route path="/order" component={Order} />
                 <Redirect to="/home" />
               </Switch>
             </Content>

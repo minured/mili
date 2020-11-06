@@ -3,6 +3,8 @@ import "./leftNav.less";
 import logo from "../../assets/images/logo.jpg";
 import { Link } from "react-router-dom";
 import { Menu, Button, Sider } from "antd";
+import menuList from "../../config/menuList";
+import { withRouter } from "react-router-dom";
 
 import {
   AppstoreOutlined,
@@ -15,7 +17,41 @@ import {
 } from "@ant-design/icons";
 const { SubMenu } = Menu;
 
-export default function LeftNav() {
+function LeftNav(props) {
+  const { pathname } = props.location;
+  let openKey = "/home";
+  if (pathname === "/category" || pathname === "/product") {
+    openKey = "/products";
+  } else if (
+    pathname === "/barchart" ||
+    pathname === "/linechart" ||
+    pathname === "/piechart"
+  ) {
+    openKey = "/charts";
+  }
+  const generateMenu = (menuList) => {
+    const { pathname } = props.location;
+    
+    return menuList.map((item) => {
+      if (!item.children) {
+
+        return (
+          <Menu.Item key={item.key} icon={<PieChartOutlined />}>
+            <Link to={item.key}>{item.title}</Link>
+          </Menu.Item>
+
+        );
+      } else {
+        if (item.children.find(cItem => cItem.key))
+        return (
+          <SubMenu key={item.key} icon={<MailOutlined />} title={item.title}>
+            {generateMenu(item.children)}
+          </SubMenu>
+        );
+      }
+    });
+  };
+
   const [collapsed, setCollapsed] = useState(false);
   const toggleCollapsed = () => {
     console.log("toggle");
@@ -40,46 +76,17 @@ export default function LeftNav() {
       >
         {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
       </Button> */}
-
       <Menu
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
-        mode="inline"
+        defaultOpenKeys={[openKey]}
+        selectedKeys={[props.location.pathname]}
         theme="dark"
+        mode="inline"
         inlineCollapsed={true}
       >
-        <Menu.Item key="1" icon={<PieChartOutlined />}>
-          <Link to="/home">首页</Link>
-        </Menu.Item>
-        <SubMenu key="sub1" icon={<MailOutlined />} title="商品管理">
-          <Menu.Item key="5">品类管理</Menu.Item>
-          <Menu.Item key="6">商品管理</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub2" icon={<MailOutlined />} title="用户管理">
-          <Menu.Item key="7">
-            <Link to="user">用户</Link>
-          </Menu.Item>
-          <Menu.Item key="8">商品管理</Menu.Item>
-        </SubMenu>
-
-        <SubMenu key="sub3" icon={<MailOutlined />} title="角色管理">
-          <Menu.Item key="7">
-            <Link to="category">品类管理</Link>
-          </Menu.Item>
-          <Menu.Item key="8">商品管理</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub4" icon={<AppstoreOutlined />} title="图形图表">
-          <Menu.Item key="9">
-            <Link to="/barchart">柱状图</Link>
-          </Menu.Item>
-          <Menu.Item key="10">
-            <Link to="/linechart">折线图</Link>
-          </Menu.Item>
-          <Menu.Item key="11">
-            <Link to="/piechart">饼图</Link>
-          </Menu.Item>
-        </SubMenu>
+        {generateMenu(menuList)}
       </Menu>
     </div>
   );
 }
+
+export default withRouter(LeftNav);
