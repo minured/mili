@@ -20,7 +20,7 @@ module.exports = override(
     lessOptions: {
       javascriptEnabled: true,
       localIdentName: "[local]--[hash:base64:5]",
-      modifyVars: { "@primary-color": "#1DA57A" },
+      // modifyVars: { "@primary-color": "#1DA57A" },
     },
   })
 );

@@ -1,0 +1,21 @@
+div.page {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+div.page .main-content div.content div.inputInfo .add-button {
+  margin-top: 15px;
+}
+div.page .side-right {
+  margin-top: 20px;
+  padding: 10px 5px;
+  width: 200px;
+  background-color: #eee;
+  margin-left: 20px;
+}
+div.page .side-right .side-list {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  overflow: auto;
+}

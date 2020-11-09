@@ -75,7 +75,7 @@ export default function Admin(props) {
                 <Route path="/piechart" component={PieChart} />
                 <Route path="/role" component={Role} />
                 <Route path="/order" component={Order} />
-                <Redirect to="/home" />
+                {/* <Redirect to="/home" /> */}
               </Switch>
             </Content>
 

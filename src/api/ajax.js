@@ -10,18 +10,18 @@ const ajax = axios.create({
 
 // 响应拦截器
 // 在使用 async await 简化请求的情况下，可以优先拦截请求错误
-ajax.interceptors.response.use(
-  // 请求成功处理
-  (response) => {
-    return response;
-  },
-  //接口错误状态处理，也就是说无响应时的处理
-  (error) => {
-    message.error(`请求异常 ${error.response.status}`);
-    // return error.response;
-    // console.log(error);
-    return Promise.reject(error.response.status); // 返回接口返回的错误信息
-  }
-);
+// ajax.interceptors.response.use(
+//   // 请求成功处理
+//   (response) => {
+//     return response;
+//   },
+//   //接口错误状态处理，也就是说无响应时的处理
+//   (error) => {
+//     message.error(`请求异常 ${error.response.status}`);
+//     // return error.response;
+//     // console.log(error);
+//     return Promise.reject(error.response.status); // 返回接口返回的错误信息
+//   }
+// );
 
 export default ajax;
